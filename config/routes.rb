@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+  get 'exams/index'
+
+  get 'exams/show'
+
+  get 'exams/new'
+
+  get 'exams/create'
+
+  resources :hospitals
+  resources :exams
+  resources :items
+  resources :warehouses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'application#okay'
+   root 'hospitals#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
