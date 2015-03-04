@@ -1,0 +1,45 @@
+<h1>hello</h1>
+<div class="row">
+<% @hospitals.each do |hospital| %>
+  <div class="col-md-4">
+    <div class="hospital_list">
+      <table class="table">
+        <thead>
+          <tr>
+            <td> <%= image_tag("ruby_plus.png") %></td>
+            <td> <%= hospital.name %> </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>地址</td>
+            <td><%= hospital.address %></td>
+          </tr>
+          <tr>
+            <td>電話</td>
+            <td><%= hospital.phone %></td>
+          </tr>
+          <tr>
+            <td>網站</td>
+            <td><%= link_to '進入網站', hospital.web %></td>
+          </tr>
+          <tr>
+            <td>健檢
+            </td>
+            <td>熱門方案
+              <ul>
+                <% hospital.exams.all.sample(5).each do |exam| %>
+                <li><span class="glyphicon glyphicon-check" ></span>
+                  <%= exam.name %>
+                </li>
+                <% end %>  
+              </ul>
+              <%= link_to '查看更多',exams_path(hospital: hospital), class:'btn btn-success' %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+</div>

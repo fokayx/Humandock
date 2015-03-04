@@ -1,0 +1,63 @@
+<h1>
+  <%= image_tag("ruby_plus.png") %>
+  <%= @hospital.name  %>
+</h1>
+<div class="row">
+<% @exams.each do |exam| %>
+  <div class="col-md-4">
+    <div class="hospital_list">
+      <table class="table">
+        <thead>
+          <tr>
+           <td width="46px"> <%= image_tag("doc_plus.png") %></td>
+            <td> <%= exam.name %> </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>性別</td>
+            <td><%= exam.gender %></td>
+          </tr>
+          <tr>
+            <td>費用</td>
+            <td><%= number_to_currency exam.price %></td>
+          </tr>
+          <tr>
+            <td>健檢
+            </td>
+            <td>
+              <%= content_tag :a,href:"\#e#{exam.id}",data: {toggle: "collapse"},aria: {expanded: "false", controls: "e#{exam.id}"}, class:"" do %>
+                詳細項目清單
+                <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" style="color:#d26e5c"></span>
+              <% end %>
+              <%= content_tag :div,id:"e#{exam.id}", class:"collapse" do %>
+                <div class="">
+                <ul>
+                <% exam.items.all.each do |item| %>
+                  <li>
+                  <%= item.name %>
+                  </li>
+                <% end %>
+                </ul>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align:center">
+              <%= content_tag :button,'我要預約', class:"btn btn-success", data: {toggle: "modal", target:"\#m#{exam.id}"}, style: "width:100%" %>
+              <%= content_tag :div, id:"m#{exam.id}", tabindex: "10", role: "dialog" , aria: {labelledby: "\#m#{exam.id}lebel", hidden: "true"}, class: "modal fade" do%>
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    aAA
+                  </div>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+</div>
