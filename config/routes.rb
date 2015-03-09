@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
-  get 'exams/index'
 
-  get 'exams/show'
-
-  get 'exams/new'
-
-  get 'exams/create'
-
+  resources :searchs
   resources :hospitals
   resources :exams
   resources :items
-  resources :warehouses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

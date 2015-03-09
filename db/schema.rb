@@ -11,15 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302123345) do
+ActiveRecord::Schema.define(version: 20150309060627) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "examlists", force: :cascade do |t|
+    t.integer  "exam_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "examlists", ["category_id"], name: "index_examlists_on_category_id", using: :btree
+  add_index "examlists", ["exam_id"], name: "index_examlists_on_exam_id", using: :btree
 
   create_table "exams", force: :cascade do |t|
     t.string   "name"
     t.integer  "price"
-    t.string   "gender"
+    t.string   "gender",      limit: 1
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "hospital_id"
   end
 
@@ -36,10 +55,10 @@ ActiveRecord::Schema.define(version: 20150302123345) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.string   "category"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -53,7 +72,15 @@ ActiveRecord::Schema.define(version: 20150302123345) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "packages", ["exam_id"], name: "index_packages_on_exam_id"
-  add_index "packages", ["item_id"], name: "index_packages_on_item_id"
+  add_index "packages", ["exam_id"], name: "index_packages_on_exam_id", using: :btree
+  add_index "packages", ["item_id"], name: "index_packages_on_item_id", using: :btree
+
+  create_table "reserves", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
