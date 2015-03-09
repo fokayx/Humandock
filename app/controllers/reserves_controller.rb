@@ -7,9 +7,9 @@ class ExamsController < ApplicationController
   end
 
   def create
-    @reserve = Reseve.new(reserve_params)
-    if @reserve.save
-      flash[:notice] = 
-    end
+   # @reserve = Reseve.new(reserve_params)
+   # if @reserve.save
+   #   flash[:notice] = 
+   # end
   end
 end
