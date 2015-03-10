@@ -48,26 +48,37 @@
   font-size: 16px;
 }
 
-.label_title {
-  font-size: 18px;
+.location h1 {
+  margin: 0;
+  font-size: 20px;
   color: #777;
-  font-weight: bold;
+  font-weight: normal;
 }
 
-.hospital_list {
+.card{
+ .col-md-4{ 
+  margin-bottom: 20px;
+  padding-right: 5px;
+  }
+}
+
+.hospital_list, .exam_list{
+  height: 375px;
   background: #fff;
   font-size: 16px;
   color: #666;
-  padding: 20px;
+  padding: 10px 10px 0px;
   .table {
     margin-bottom: 0;
   }
   ul {
     margin-top: 5px;
+    margin-bottom: 0;
     padding: 0px;
     li {
       list-style: none;
-      line-height: 30px;
+      line-height: 24px;
+      margin-bottom: 6px;
     }
   }
   h2 {
@@ -93,4 +104,6 @@
   }
 }
 
-
+.exam_list{
+  height: 200px;
+}

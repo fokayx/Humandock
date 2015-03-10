@@ -1,13 +1,14 @@
 <h1>
+  <span class="glyphicon glyphicon-map-marker"></span>
   <%= @location.name %> 健康檢查服務醫院
 </h1>
 <p class="text-right">
    <span class="glyphicon glyphicon-circle-arrow-left"></span>
-     <%= link_to '回到上一頁', :back %>
+     <%= link_to '回到上一頁', '/' %>
 </p>
-<div class="row">
+<div class="row card">
 <% @hospitals.each do |hospital| %>
-  <div class="col-md-4">
+  <div class="col-sm-6 col-md-4 col-lg-3">
     <div class="hospital_list">
       <table class="table">
         <thead>
@@ -35,10 +36,10 @@
             </td>
             <td>熱門套餐
               <ul>
-              <% hospital.exams.order("random()").limit(5).each do |exam| %>
+              <% hospital.exams.order("random()").limit(3).each do |exam| %>
                 <li>
                 <%= content_tag :a, data: {toggle: "modal", target:"\#m#{exam.id}"} do %>
-                  <%= exam.name %>
+                  <%= exam.name[0..11] %>
                   <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" style="color:#d26e5c"></span>
                 <% end %>
                 </li>
@@ -48,7 +49,7 @@
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
                         <h2>
-                        <%= image_tag("doc_plus.png") %>
+                          <%= image_tag("doc_plus.png") %>
                           <%= exam.name %>
                         </h2>
                       </div>
@@ -83,7 +84,7 @@
                           <div class="row">
                             <div class="col-md-12">
                               <h3>
-                              <%= category.name %>
+                                <%= category.name %>
                               </h3>
                             </div>
                           <% category.items.each do |item| %>
@@ -101,7 +102,10 @@
                   </div>
                 <% end %>
               <% end %>
-              <%= link_to '查看更多',exams_path(hospital: hospital), class:'btn btn-success' %>
+                <li><%= link_to '查看更多',exams_path(hospital: hospital), class:'' %>
+                  <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" style="color:#d26e5c"></span>
+                </li>
+              </ul>
             </td>
           </tr>
         </tbody>
