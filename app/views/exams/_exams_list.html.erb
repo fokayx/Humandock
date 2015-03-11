@@ -9,7 +9,7 @@
 <div class="row">
 <% @exams.each do |exam| %>
   <div class="col-md-4">
-    <div class="hospital_list">
+    <div class="exam_list">
       <table class="table">
         <thead>
           <tr>
@@ -69,11 +69,13 @@
               <% end %>
             </td>
           </tr>
+          <!--
           <tr>
             <td colspan="2" style="text-align:center">
-              <%= content_tag :button,'我要預約', class:"btn btn-success", data: {toggle: "modal", target:"\#m#{exam.id}"}, style: "width:100%" %>
+              <% content_tag :button,'我要預約', class:"btn btn-success", data: {toggle: "modal", target:"\#m#{exam.id}"}, style: "width:100%" %>
             </td>
           </tr>
+          -->
         </tbody>
       </table>
     </div>
