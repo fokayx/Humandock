@@ -87,9 +87,9 @@
                                 <%= category.name %>
                               </h3>
                             </div>
-                            <% exam.items.where(category_id: "#{category.id}").each do |a| %>
+                            <% exam.items.where(category_id: "#{category.id}").each do |item| %>
                               <div class="col-md-6">
-                                <li><%= a.name %></li>
+                                <li><%= item.name %></li>
                               </div>
                             <% end %>
                           </div>

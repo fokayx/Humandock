@@ -61,6 +61,10 @@ a:hover, a:focus {
   border-color: #398439;
 }
 
+.modal-header, .modal-body, .modal-footer {
+  padding: 15px 25px;
+}
+
 .location_search {
   background: #fff;
   padding: 40px 30px 40px 40px !important;
