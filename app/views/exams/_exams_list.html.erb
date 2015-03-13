@@ -1,15 +1,12 @@
 <h1>
   <span class="glyphicon glyphicon-plus-sign"></span>
-  <%# @hospital.name %>
+  <% @hospital.name %>
 </h1>
 <p class="text-right">
   <span class="glyphicon glyphicon-circle-arrow-left"></span>
   <%= link_to '回到上一頁', :back %>
 </p>
 <div class="row">
-<%
-=begin
-%>
 <% @exams.each do |exam| %>
   <div class="col-md-4">
     <div class="exam_list">
@@ -84,7 +81,4 @@
     </div>
   </div>
 <% end %>
-<%
-=end
-%>
 </div>
