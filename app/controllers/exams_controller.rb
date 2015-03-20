@@ -8,6 +8,8 @@ class ExamsController < ApplicationController
    # @hospital = Hospital.find(params[:hospital])
   end
   def show
+    @hospital = Hospital.find(params[:hospital_id])
+    @exams = @hospital.exams
    #@exam = Exam.find(params[:id])
    #@examitem = @exam.items
   end
