@@ -11,7 +11,7 @@ class ExamsController < ApplicationController
     @hospital = Hospital.find(params[:hospital_id])
     @exams = @hospital.exams
    #@exam = Exam.find(params[:id])
-   #@examitem = @exam.items
+   #@examitem = @exams.items
   end
 
   def new

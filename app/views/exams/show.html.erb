@@ -1,10 +1,9 @@
   套餐名：
-  <%= @exam.name %>
-  <%= @exam.price %>
-  <%= @exam.gender %>
-  <%= @exam.description %>
+<% @exams.each do |exam| %>
+  <%= exam.name %>
+  <%= exam.price %>
+  <%= exam.gender %>
+  <%= exam.description %>
+<% end %>
   <br>
   項目：
-  <% @examitem.each do |i|  %>
-    <%= i.name %>
-  <% end %>
