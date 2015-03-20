@@ -1,2 +1,115 @@
-
-<%= render 'hospitals_list' %>
+<h1>
+  <span class="glyphicon glyphicon-map-marker"></span>
+  <%= @location.name %> 健康檢查服務醫院
+</h1>
+<p class="text-right">
+   <span class="glyphicon glyphicon-circle-arrow-left"></span>
+     <%= link_to '回到上一頁', '/' %>
+</p>
+<div class="row card">
+<% @hospitals.each do |hospital| %>
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="hospital_list">
+      <table class="table">
+        <thead>
+          <tr>
+            <td> <%= image_tag("ruby_plus.png") %></td>
+            <td> <%= hospital.name %> </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>地址</td>
+            <td><%= hospital.address %></td>
+          </tr>
+          <tr>
+            <td>電話</td>
+            <td><%= hospital.phone %></td>
+          </tr>
+          <tr>
+            <td>網站</td>
+            <td><%= link_to '進入網站', hospital.web, target:"_blank" %></td>
+          </tr>
+          <tr>
+            <td>健檢
+            </td>
+            <td>熱門套餐
+              <ul>
+              <% hospital.exams.order("random()").limit(3).each do |exam| %>
+                <li>
+                <%= content_tag :a, data: {toggle: "modal", target:"\#m#{exam.id}"} do %>
+                  <%= exam.name[0..11] %>
+                  <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" style="color:#d26e5c"></span>
+                <% end %>
+                </li>
+                <%= content_tag :div, id: "m#{exam.id}", tabindex:"-1", role: "dialog", aria: { labelledby: "m#{exam.id}Label", hidden: "true"}, class:"modal fade" do %>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                        <h2>
+                          <%= image_tag("doc_plus.png") %>
+                          <%= exam.name %>
+                        </h2>
+                      </div>
+                      <div class="modal-header">
+                        <div class="exam-detail">
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                              <span class="glyphicon glyphicon-plus-sign"></span>
+                              <%= hospital.name %>
+                            </div>
+                          </div >
+                        </div>
+                      </div>
+                      <div class="modal-header">
+                          <div class="row">
+                        <div class="exam-detail">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <span class="glyphicon glyphicon-credit-card"></span>
+                              費用： <%= number_to_currency exam.price %>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                              <span class="glyphicon glyphicon-user"></span>
+                              性別：<%= exam.gender %>
+                            </div>
+                          </div >
+                        </div>
+                      </div>
+                      <div class="modal-body">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        健檢項目：共 <%= exam.items.count %> 項
+                        <% exam.categories.each do |category| %>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <h3>
+                                <%= category.name %>
+                              </h3>
+                            </div>
+                            <% exam.items.where(category_id: "#{category.id}").each do |item| %>
+                              <div class="col-md-6">
+                                <li><%= item.name %></li>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+                <li><%= link_to '查看更多',hospital_exams_path(hospital.id), class:'' %>
+                  <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" style="color:#d26e5c"></span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+</div>

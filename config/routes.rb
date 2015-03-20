@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   resources :searchs
-  resources :hospitals
-  resources :exams
+  resources :hospitals do
+    resources :exams
+  end
   resources :items
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
