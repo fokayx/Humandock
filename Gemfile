@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'bootstrap-sass'
 gem 'pg'
+gem 'better_errors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
